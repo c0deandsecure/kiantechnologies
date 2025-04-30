@@ -1,0 +1,114 @@
+/* Overall App Background and Text */
+.App {
+  text-align: center;
+  background-color: #F7F7F7;
+  color: white;
+  padding: 20px;
+}
+
+/* Jarallax Background Container */
+.jarallax {
+  position: relative;
+  z-index: 0;
+  background-attachment: scroll;
+  background-size: auto;
+}
+
+/* Container Styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Section Title */
+.section-title {
+  margin-bottom: 20px;
+}
+
+.section-title .subtitle {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  color: black;
+  font-weight: bold;
+}
+
+/* Teacher List and Row */
+.teacher-list {
+  margin-top: 40px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Column for Cards */
+.col-md-3 {
+  flex: 0 0 23%;
+  max-width: 23%;
+  margin: 10px;
+}
+
+/* Internship (Teacher) Card */
+.teacher-img-content {
+  background-color: #21cccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-cntent {
+  padding: 15px;
+}
+
+.teacher-name span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Teacher Image and Button */
+.teacher-img img {
+  width: 100%;
+  display: block;
+}
+
+.course-price {
+  background: linear-gradient(45deg, #1b1a1a, #ff7f7f);
+  padding: 10px;
+}
+
+.course-price a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Teacher Category (Description) */
+.teacher-category {
+  margin-top: 10px;
+}
+
+.st-name {
+  font-size: 14px;
+}
+
+/* Genius Button at the End */
+.genius-btn {
+  margin-top: 20px;
+}
+
+.genius-btn a {
+  background-color: #3ba0e3;
+  padding: 10px 20px;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 5px;
+}

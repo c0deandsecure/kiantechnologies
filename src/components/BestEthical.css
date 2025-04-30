@@ -1,0 +1,121 @@
+/* Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Section Styling */
+  .about-us-section {
+    padding: 80px 0;
+    background-color: #F7F7F7;
+  }
+  
+  /* Title and Subtitle Styling */
+  .section-title {
+    margin-bottom: 30px;
+  }
+  
+  .subtitle {
+    text-transform: uppercase;
+    font-size: 18px;
+    color:black
+  }
+  
+  h2 {
+    font-size: 36px;
+    color: black;
+    font-weight: 700;
+  }
+  
+  h2 span {
+    color: black; /* Highlight color */
+  }
+  
+  /* Text Styling */
+  .about-content-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons Styling */
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .cta-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #4ceaff;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-btn:hover {
+    background-color: #d44051;
+  }
+  
+  /* Image Gallery Styles */
+  .image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .image-item {
+    max-width: 100%;  /* Ensures the image doesn't stretch beyond its container */
+    height: auto;     /* Maintains aspect ratio */
+    width: 250px;     /* Set a maximum width for the images */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Ensures the image fits inside the container without distorting */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .about-us-section {
+      padding: 60px 15px;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .image-gallery {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .image-item {
+      width: 200px;  /* Adjust size for smaller screens */
+    }
+  }
+  
+  /* Desktop View (larger screens) */
+  @media (min-width: 769px) {
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .col-md-7 {
+      flex: 0 0 66.66%;
+      max-width: 66.66%;
+    }
+  
+    .col-md-5 {
+      flex: 0 0 33.33%;
+      max-width: 33.33%;
+    }
+  }
+  
