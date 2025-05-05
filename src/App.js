@@ -7,7 +7,7 @@ import BestEthical from './components/BestEthical';
 import ECCouncil from './components/ECCouncil';
 import LatestSection from './components/LatestSection';
 import PartnersSection from './components/PartnersSection';
-
+import WhyChooseUs from './components/WhyChooseUs';
 function App() {
   return (
     <div className="App">
@@ -19,6 +19,7 @@ function App() {
       <Internship />
       <LatestSection />
       <PartnersSection />
+      <WhyChooseUs />
     </div>
   );
 }
