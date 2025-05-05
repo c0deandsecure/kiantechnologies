@@ -8,6 +8,7 @@ import ECCouncil from './components/ECCouncil';
 import LatestSection from './components/LatestSection';
 import PartnersSection from './components/PartnersSection';
 import WhyChooseUs from './components/WhyChooseUs';
+import Highlights from './components/Highlights';
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
       <LatestSection />
       <PartnersSection />
       <WhyChooseUs />
+      <Highlights />
     </div>
   );
 }
