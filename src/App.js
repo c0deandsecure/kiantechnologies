@@ -9,6 +9,7 @@ import LatestSection from './components/LatestSection';
 import PartnersSection from './components/PartnersSection';
 import WhyChooseUs from './components/WhyChooseUs';
 import Highlights from './components/Highlights';
+import ContactUs from './components/ContactUs';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,8 @@ function App() {
       <PartnersSection />
       <WhyChooseUs />
       <Highlights />
+      <ContactUs />
+     
     </div>
   );
 }
