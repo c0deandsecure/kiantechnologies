@@ -10,6 +10,7 @@ import PartnersSection from './components/PartnersSection';
 import WhyChooseUs from './components/WhyChooseUs';
 import Highlights from './components/Highlights';
 import ContactUs from './components/ContactUs';
+import Footer from './components/Footer';
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,7 @@ function App() {
       <WhyChooseUs />
       <Highlights />
       <ContactUs />
+      <Footer/>
      
     </div>
   );
