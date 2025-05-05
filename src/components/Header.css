@@ -1,29 +1,135 @@
-.header {
-    background: #F7F7F7;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.App {
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+.logo span {
+  margin-left: 8px;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.nav-links li {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.nav-links li:hover {
+  color: #00e0ff;
+}
+
+.each-slide {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10%;
+  gap: 1.2rem;
+}
+
+.overlay h3 {
+  font-size: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #00e0ff;
+}
+
+.overlay h1 {
+  font-size: 3.5rem;
+  line-height: 4rem;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  width: 60%;
+  color: #ccc;
+}
+
+.cta-button {
+  margin-top: 1rem;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  border: 2px solid #00e0ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.cta-button:hover {
+  background: #00e0ff;
+  color: #000;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
   }
-  
-  .logo {
-    color: black;
-    font-size: 1.5rem;
-    font-weight: bold;
+
+  .overlay {
+    padding-left: 5%;
+    align-items: flex-start;
   }
-  
-  .nav ul {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
+
+  .overlay h1 {
+    font-size: 2.2rem;
+    line-height: 2.5rem;
   }
-  
-  .nav li {
-    color: black;
-    cursor: pointer;
-    transition: color 0.3s;
+
+  .overlay p {
+    width: 90%;
+    font-size: 1rem;
   }
-  
-  .nav li:hover {
-    color: #4CAF50;
+
+  .cta-button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.3rem;
   }
+}
