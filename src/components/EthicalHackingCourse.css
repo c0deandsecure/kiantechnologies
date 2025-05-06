@@ -1,0 +1,98 @@
+.ethical-hacking-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    background-color: #f8f9fc;
+    gap: 2rem;
+  }
+  
+  .eh-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .eh-image {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .eh-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .eh-right h2 {
+    color: #00bcd4;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .h1{
+    color: black;
+  }
+  
+  .eh-right h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .eh-right p {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  .eh-features {
+    padding-left: 1rem;
+    margin: 1rem 0;
+    list-style: none;
+  }
+  
+  .eh-features li {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  .eh-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .btn.blue {
+    background-color: #00bcd4;
+  }
+  
+  .btn.blue:hover {
+    background-color: #0097a7;
+  }
+  
+  .btn.cyan {
+    background-color: #00e5ff;
+  }
+  
+  .btn.cyan:hover {
+    background-color: #00bcd4;
+  }
+  

@@ -11,6 +11,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import Highlights from './components/Highlights';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
+import EthicalHackingCourse from './components/EthicalHackingCourse';
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
       <Courses />
       <BestEthical />
       <Internship />
+      <EthicalHackingCourse />
       <LatestSection />
       <PartnersSection />
       <WhyChooseUs />
