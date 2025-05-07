@@ -4,6 +4,7 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const images = [
@@ -19,10 +20,10 @@ const Header = () => {
           KT <span>KIAN TECHNOLOGIES</span>
         </div>
         <ul className="nav-links">
-          <li>HOME</li>
-          <li>ABOUT US</li>
-          <li>COURSES</li>
-          <li>CONTACT US</li>
+        <li><Link to="/">HOME</Link></li>
+          <li><Link to="/about">ABOUT US</Link></li>
+          <li><Link to="#courses">COURSES</Link></li>
+          <li><Link to="#contact">CONTACT US</Link></li>
           <li>PAGES</li>
           <li>REGISTER</li>
         </ul>
