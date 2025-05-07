@@ -1,17 +1,17 @@
 import React from 'react';
-import Header from './components/Header';
-import Courses from './components/Courses';
-import Contact from './components/Contact';
-import Internship from './components/Intership';
-import BestEthical from './components/BestEthical';
-import ECCouncil from './components/ECCouncil';
-import LatestSection from './components/LatestSection';
-import PartnersSection from './components/PartnersSection';
-import WhyChooseUs from './components/WhyChooseUs';
-import Highlights from './components/Highlights';
-import ContactUs from './components/ContactUs';
-import Footer from './components/Footer';
-import EthicalHackingCourse from './components/EthicalHackingCourse';
+import Header from './home/Header';
+import Courses from './home/Courses';
+import Contact from './home/Contact';
+import Internship from './home/Intership';
+import BestEthical from './home/BestEthical';
+import ECCouncil from './home/ECCouncil';
+import LatestSection from './home/LatestSection';
+import PartnersSection from './home/PartnersSection';
+import WhyChooseUs from './home/WhyChooseUs';
+import Highlights from './home/Highlights';
+import ContactUs from './home/ContactUs';
+import Footer from './home/Footer';
+import EthicalHackingCourse from './home/EthicalHackingCourse';
 function App() {
   return (
     <div className="App">
