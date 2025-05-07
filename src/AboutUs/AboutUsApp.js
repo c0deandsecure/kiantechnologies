@@ -1,18 +1,20 @@
-// src/AboutUs/AboutUsApp.js
 import React from "react";
-import Header from "../home/Header";
 import Footer from "../home/Footer";
+import AboutHero from "./AboutHero";
+import "./AboutUs.css";
 
 const AboutUsApp = () => {
   return (
     <>
-      <Header />
-      <div style={{ padding: "2rem" }}>
-        <h1>About Kian Technologies</h1>
+      
+      <AboutHero />
+      {/* Additional About content below */}
+      <div className="about-container">
+        <h2>Welcome to Kian Technologies</h2>
         <p>
-          Welcome to Kian Technologies! We are an EC-Council authorized training partner providing top-tier cybersecurity and ethical hacking courses.
+          We are an EC-Council certified training partner offering specialized
+          courses in cybersecurity and ethical hacking.
         </p>
-        {/* Add more about content here */}
       </div>
       <Footer />
     </>
