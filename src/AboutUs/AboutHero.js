@@ -1,5 +1,5 @@
 import React from "react";
-import "./AboutUs.css"; // Make sure this path is correct
+import "./AboutHero.css"; // Make sure this path is correct
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
