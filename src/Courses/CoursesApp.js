@@ -1,11 +1,12 @@
 import Footer from "../home/Footer";
-import Header from "../home/Header";
+import CoursesHero from "./CoursesHero";
+
 
 const CoursesApp = () => {
     return (
       <>
         
-        <Header />
+        <CoursesHero />
         
         <Footer />
       </>
