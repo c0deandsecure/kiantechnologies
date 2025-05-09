@@ -14,6 +14,7 @@ import Highlights from './home/Highlights';
 import ContactUs from './home/ContactUs';
 import Footer from './home/Footer';
 import Header from './home/Header';
+import CoursesApp from './Courses/CoursesApp';
 
 function HomePage() {
   return (
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUsApp />} />
+        <Route path="/courses" element={<CoursesApp />} />
       </Routes>
     </Router>
   );
