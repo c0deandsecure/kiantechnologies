@@ -23,7 +23,7 @@ const Header = () => {
         <li><Link to="/">HOME</Link></li>
           <li><Link to="/about">ABOUT US</Link></li>
           <li><Link to="/courses">COURSES</Link></li>
-          <li><Link to="#contact">CONTACT US</Link></li>
+          <li><Link to="/contact">CONTACT US</Link></li>
           <li>PAGES</li>
           <li>REGISTER</li>
         </ul>

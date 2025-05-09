@@ -15,6 +15,7 @@ import ContactUs from './home/ContactUs';
 import Footer from './home/Footer';
 import Header from './home/Header';
 import CoursesApp from './Courses/CoursesApp';
+import ContactUsApp from './Contact Us/ContactUsApp';
 
 function HomePage() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUsApp />} />
         <Route path="/courses" element={<CoursesApp />} />
+        <Route path="/contact" element={<ContactUsApp />} />
       </Routes>
     </Router>
   );
