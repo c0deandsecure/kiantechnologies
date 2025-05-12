@@ -1,0 +1,102 @@
+/* src/styles/course.css */
+
+.course-container {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fbfc;
+  color: #333;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.dropdown-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.dropdown {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 150px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: #0ea5e9;
+}
+
+.view-toggle {
+  margin-left: auto;
+}
+
+.toggle-btn {
+  padding: 10px;
+  border: none;
+  background-color: #e5e7eb;
+  border-radius: 8px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+}
+
+.toggle-btn.active,
+.toggle-btn:hover {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+.course-list.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.course-list.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.course-card {
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.course-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.course-card .details {
+  flex: 1;
+}
+
+.course-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.course-card .meta {
+  font-size: 0.9rem;
+  color: #555;
+}
