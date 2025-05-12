@@ -12,7 +12,7 @@ const coursesData = [
   },
   {
     title: 'Ethical Hacking Masterclass',
-    image: 'https://via.placeholder.com/80',
+    image: 'https://kiantechnologies.in/uploads/courses/it.png',
     instructor: 'Alice Smith',
     duration: '6 weeks',
   },
