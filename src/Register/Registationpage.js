@@ -50,29 +50,7 @@ const Registrationpage = () => {
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="logo">Kian Technologies</div>
-        <nav className="nav">
-          <button 
-            className={`nav-btn ${activeSection === 'about' ? 'active' : ''}`}
-            onClick={() => scrollToSection('about')}
-          >
-            About Us
-          </button>
-          <button 
-            className={`nav-btn ${activeSection === 'benefits' ? 'active' : ''}`}
-            onClick={() => scrollToSection('benefits')}
-          >
-            Benefits
-          </button>
-          <button 
-            className={`nav-btn ${activeSection === 'register' ? 'active' : ''}`}
-            onClick={() => scrollToSection('register')}
-          >
-            Register
-          </button>
-        </nav>
-      </header>
+      
 
       <main>
         <section id="about" className="section about-section">
@@ -436,16 +414,7 @@ const Registrationpage = () => {
         </section>
       </main>
       
-      <footer className="footer">
-        <div className="container">
-          <p>© {new Date().getFullYear()} Kian Technologies. All rights reserved.</p>
-          <div className="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact Us</a>
-          </div>
-        </div>
-      </footer>
+      
     </div>
   );
 };
