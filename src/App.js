@@ -16,6 +16,7 @@ import Footer from './home/Footer';
 import Header from './home/Header';
 import CoursesApp from './Courses/CoursesApp';
 import ContactUsApp from './Contact Us/ContactUsApp';
+import RegisterApp from './Register/RegisterApp';
 
 function HomePage() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/about" element={<AboutUsApp />} />
         <Route path="/courses" element={<CoursesApp />} />
         <Route path="/contact" element={<ContactUsApp />} />
+        <Route path="/register" element={<RegisterApp />} />
       </Routes>
     </Router>
   );
