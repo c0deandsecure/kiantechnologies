@@ -8,28 +8,90 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const images = [
-    "https://images.unsplash.com/photo-1531497865144-0464ef8fb9c0",
-    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+    "https://images.unsplash.com/photo-1531497865144-0464ef8fb9c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
   ];
 
-  return (
-    <div className="App">
-      <nav className="navbar">
-        <div className="logo">
-          KT <span>KIAN TECHNOLOGIES</span>
-        </div>
-        <ul className="nav-links">
-        <li><Link to="/">HOME</Link></li>
-          <li><Link to="/about">ABOUT US</Link></li>
-          <li><Link to="/courses">COURSES</Link></li>
-          <li><Link to="/contact">CONTACT US</Link></li>
-          <li>PAGES</li>
-          <li><Link to="/Register">REGISTER</Link></li>
-        </ul>
-      </nav>
+  const navVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
 
-      <Slide duration={5000} transitionDuration={800} arrows autoplay infinite>
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.8,
+        ease: "backOut"
+      }
+    })
+  };
+
+  return (
+    <header className="App">
+      <motion.nav 
+        className="navbar"
+        initial="hidden"
+        animate="visible"
+        variants={navVariants}
+      >
+        <motion.div 
+          className="logo"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          KT <span>KIAN TECHNOLOGIES</span>
+        </motion.div>
+        
+        <ul className="nav-links">
+          {[
+            { path: "/", name: "HOME" },
+            { path: "/about", name: "ABOUT US" },
+            { path: "/courses", name: "COURSES" },
+            { path: "/contact", name: "CONTACT US" },
+            { path: "/pages", name: "PAGES" },
+            { path: "/register", name: "REGISTER" }
+          ].map((item, index) => (
+            <motion.li
+              key={item.name}
+              custom={index}
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              whileHover={{ 
+                color: "#00e0ff",
+                y: -2
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link to={item.path}>{item.name}</Link>
+            </motion.li>
+          ))}
+        </ul>
+        
+        <div className="mobile-menu-btn">
+          <div className="menu-line"></div>
+          <div className="menu-line"></div>
+          <div className="menu-line"></div>
+        </div>
+      </motion.nav>
+
+      <Slide 
+        duration={5000} 
+        transitionDuration={800} 
+        arrows={false} 
+        autoplay 
+        infinite
+        indicators
+      >
         {images.map((url, index) => (
           <div
             className="each-slide"
@@ -37,41 +99,52 @@ const Header = () => {
             style={{ backgroundImage: `url(${url})` }}
           >
             <div className="overlay">
-              <motion.h3
-                initial={{ y: -30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
+              <motion.div
+                className="hero-content"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.2,
+                      delayChildren: 0.3
+                    }
+                  }
+                }}
               >
-                EDUCATION & TRAINING ORGANIZATION
-              </motion.h3>
-              <motion.h1
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <b>Get</b> Certified <br />
-                <b>Get</b> Ahead
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-              >
-                Kian Technologies offers authorized training for EC-Council
-                certifications, including <b>CEH</b>, <b>CHFI</b>, <b>ECSA</b>,
-                <b> LPT</b>, and <b>CISSP</b> programs.
-              </motion.p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                className="cta-button"
-              >
-                CONTACT US <FaArrowRight />
-              </motion.button>
+                <motion.h3 variants={textVariants}>
+                  EDUCATION & TRAINING ORGANIZATION
+                </motion.h3>
+                <motion.h1 variants={textVariants}>
+                  <span className="highlight">Get</span> Certified <br />
+                  <span className="highlight">Get</span> Ahead
+                </motion.h1>
+                <motion.p variants={textVariants}>
+                  Kian Technologies offers authorized training for EC-Council
+                  certifications, including <span className="highlight">CEH</span>, <span className="highlight">CHFI</span>, <span className="highlight">ECSA</span>,
+                  <span className="highlight"> LPT</span>, and <span className="highlight">CISSP</span> programs.
+                </motion.p>
+                <motion.div variants={textVariants}>
+                  <motion.button
+                    className="cta-button"
+                    whileHover={{ 
+                      scale: 1.05,
+                      backgroundColor: "#00e0ff",
+                      color: "#000"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    CONTACT US <FaArrowRight />
+                  </motion.button>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         ))}
       </Slide>
-    </div>
+    </header>
   );
 };
 

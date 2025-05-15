@@ -1,135 +1,305 @@
+/* Header.css */
+:root {
+  --primary-color: #00e0ff;
+  --secondary-color: #0077ff;
+  --dark-color: #111827;
+  --light-color: #f8fafc;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.App {
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
+.App {
+  position: relative;
+}
+
+/* Navbar Styles */
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
-  padding: 1rem 3rem;
+  padding: 1.5rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
-  z-index: 10;
+  z-index: 1000;
   background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: #fff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
+
 .logo span {
-  margin-left: 8px;
-  font-size: 1rem;
-  font-weight: 300;
+  margin-left: 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
-  font-weight: 600;
-  font-size: 0.95rem;
+  gap: 2rem;
 }
 
 .nav-links li {
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.nav-links li:hover {
-  color: #00e0ff;
+  position: relative;
 }
 
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: var(--transition);
+}
+
+.nav-links li:hover a::after {
+  width: 100%;
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.menu-line {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* Slide Styles */
 .each-slide {
   height: 100vh;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
 }
 
 .overlay {
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
   color: white;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 10%;
-  gap: 1.2rem;
+  align-items: center;
+  padding: 0 10%;
 }
 
-.overlay h3 {
-  font-size: 1rem;
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-content h3 {
+  font-size: 1.1rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #00e0ff;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
 }
 
-.overlay h1 {
-  font-size: 3.5rem;
-  line-height: 4rem;
+.hero-content h1 {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
 }
 
-.overlay p {
+.highlight {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.hero-content p {
   font-size: 1.2rem;
-  width: 60%;
-  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+}
+
+.hero-content p .highlight {
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .cta-button {
-  margin-top: 1rem;
-  padding: 0.9rem 2rem;
+  padding: 1rem 2.5rem;
   background: transparent;
-  border: 2px solid #00e0ff;
-  color: #fff;
-  font-weight: bold;
+  border: 2px solid var(--primary-color);
+  color: white;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
-  display: flex;
+  transition: var(--transition);
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   font-size: 1rem;
-  border-radius: 5px;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .cta-button:hover {
-  background: #00e0ff;
-  color: #000;
+  background: var(--primary-color);
+  color: var(--dark-color);
+  box-shadow: 0 0 20px rgba(0, 224, 255, 0.5);
 }
 
-/* Responsive */
+/* Indicators */
+.react-slideshow-container .default-nav {
+  background: rgba(255, 255, 255, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.react-slideshow-container .default-nav:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.react-slideshow-container .default-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 3.2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1.2rem 2rem;
+  }
+  
   .nav-links {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    clip-path: circle(0px at 90% -10%);
+    transition: all 0.5s ease-out;
+    pointer-events: none;
+  }
+  
+  .nav-links.active {
+    clip-path: circle(1000px at 90% -10%);
+    pointer-events: all;
+  }
+  
+  .mobile-menu-btn {
+    display: flex;
+    z-index: 1001;
+  }
+  
+  .mobile-menu-btn.active .menu-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  
+  .mobile-menu-btn.active .menu-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-menu-btn.active .menu-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+  
+  .overlay {
+    padding: 0 5%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  
+  .cta-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo span {
     display: none;
   }
-
-  .overlay {
-    padding-left: 5%;
-    align-items: flex-start;
+  
+  .hero-content h1 {
+    font-size: 2rem;
   }
-
-  .overlay h1 {
-    font-size: 2.2rem;
-    line-height: 2.5rem;
-  }
-
-  .overlay p {
-    width: 90%;
-    font-size: 1rem;
-  }
-
-  .cta-button {
+  
+  .hero-content h3 {
     font-size: 0.9rem;
-    padding: 0.7rem 1.3rem;
+    letter-spacing: 2px;
   }
 }
