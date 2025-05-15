@@ -1,28 +1,52 @@
-import React from "react";
-import "./CoursesHero.css"; // Make sure this path is correct
+import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import { useEffect } from "react";
+import "./CoursesHero.css";
 
 const CoursesHero = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ 
+      duration: 800,
+      once: true,
+      easing: 'ease-in-out-quad'
+    });
   }, []);
 
   return (
-    <div className="about-hero">
-      <div className="overlay">
-        <div className="hero-content" data-aos="fade-up">
-          <h1 data-aos="zoom-in">
-            Genius <span>Courses</span>
-          </h1>
-          <div className="breadcrumb" data-aos="fade-up" data-aos-delay="300">
-            <a href="/">HOME</a>
-            <span className="current">COURSES</span>
+    <>
+      <header className="courses-header">
+        <div className="header-container">
+          <div className="logo-container">
+            <h1 className="logo">K T KIAN TECHNOLOGIES</h1>
+            <p className="tagline">LEARN SHARE TEACH ARCHIEVE</p>
+          </div>
+          <nav className="main-nav">
+            <ul>
+              <li><a href="/">HOME</a></li>
+              <li><a href="/about">ABOUT US</a></li>
+              <li><a href="/courses" className="active">COURSES</a></li>
+              <li><a href="/contact">CONTACT US</a></li>
+              <li><a href="/pages">PAGES</a></li>
+              <li><a href="/register" className="register-btn">REGISTER</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <section className="courses-hero">
+        <div className="overlay">
+          <div className="hero-content" data-aos="fade-up">
+            <h1 data-aos="zoom-in" data-aos-delay="100">
+              Genius <span>Courses</span>
+            </h1>
+            <div className="breadcrumb" data-aos="fade-up" data-aos-delay="300">
+              <a href="/">HOME</a>
+              <span className="current">COURSES</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 
