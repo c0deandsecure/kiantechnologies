@@ -15,6 +15,11 @@ const EthicalHackingCourse = () => {
           alt="Types of Hackers"
           className="eh-image"
         />
+        <img
+          src="https://kiantechnologies.in/uploads/eh03.png"
+          alt="Types of Hackers"
+          className="eh-image"
+        />
         
       </div>
 
