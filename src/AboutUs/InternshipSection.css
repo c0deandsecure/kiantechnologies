@@ -1,142 +1,268 @@
+/* Import Google Fonts for a modern aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+
+/* Optional: If using AOS, make sure its CSS is linked in your main HTML or App.js */
+/* @import 'aos/dist/aos.css'; */
+
 .internship-section {
-    padding: 60px 20px;
-    background-color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
+  padding: 80px 20px; /* More vertical padding for visual breathing room */
+  background-color: #f8f9fa; /* Light, clean background */
+  font-family: 'Poppins', sans-serif; /* Consistent modern font */
+  color: #333; /* Default text color */
+  overflow: hidden; /* Important for animations */
+}
+
+.internship-container {
+  display: grid; /* Use CSS Grid for robust layout */
+  grid-template-columns: 1.5fr 1fr; /* Images slightly wider than content */
+  gap: 60px; /* More space between sections */
+  max-width: 1200px; /* Max width for content, keeps it tidy */
+  margin: 0 auto; /* Center the container */
+  align-items: center; /* Vertically align content */
+  padding-bottom: 40px; /* Space above bottom text */
+}
+
+/* Images Section Styling */
+.images-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Space between large and small images */
+  align-items: center; /* Center images within their section */
+}
+
+.large-image img {
+  width: 100%; /* Ensure it fills its container */
+  max-height: 450px; /* Max height for better control */
+  object-fit: cover; /* Crop if necessary to fill space */
+  border-radius: 15px; /* Softer rounded corners */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* More pronounced, soft shadow */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.large-image img:hover {
+  transform: translateY(-5px) scale(1.01); /* Lift and subtle scale on hover */
+}
+
+.small-images {
+  display: grid; /* Use grid for small images to control layout */
+  grid-template-columns: 1fr 1fr; /* Two columns for small images */
+  gap: 20px; /* Space between small images */
+  width: 100%; /* Ensure it fills its parent container */
+}
+
+.small-images img {
+  width: 100%; /* Make sure they fill their grid cell */
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Cover the area, cropping if needed */
+  border-radius: 15px; /* Consistent rounded corners */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* Consistent shadow */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.small-images img:hover {
+  transform: translateY(-5px) scale(1.01); /* Lift and subtle scale on hover */
+}
+
+/* Internship Content Styling */
+.internship-content {
+  display: flex;
+  flex-direction: column;
+  /* Removed max-width here, flex-grow will handle it */
+  background-color: #ffffff; /* White background for content */
+  padding: 40px; /* Generous padding */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Stronger, softer shadow */
+}
+
+.internship-subtitle {
+  color: #007bff; /* Vibrant blue for subtitle */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.internship-content h2 {
+  font-family: 'Roboto', sans-serif; /* Distinct font for heading */
+  font-size: 3.2rem; /* Larger, more impactful heading */
+  margin-bottom: 25px; /* Space below title */
+  line-height: 1.2;
+  color: #2c3e50; /* Darker, strong color */
+}
+
+.internship-content .highlight {
+  color: #007bff; /* Primary blue for highlight */
+  font-weight: 700;
+}
+
+.poster-image {
+  margin-bottom: 25px; /* Space below the poster image */
+}
+
+.poster-image img {
+  width: 100%; /* Ensure it takes full width of content section */
+  max-width: 400px; /* Max width to prevent it from getting too large */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  display: block; /* Remove extra space below image */
+  margin: 0 auto; /* Center the image if max-width is applied */
+}
+
+.internship-content p {
+  font-size: 1.05rem; /* Slightly larger text */
+  color: #555;
+  margin-bottom: 30px; /* More space before the button */
+  line-height: 1.7; /* Improved readability */
+}
+
+.internship-content strong {
+  color: #2c3e50; /* Emphasize strong text */
+}
+
+.cta-button {
+  background-color: #007bff; /* Primary action color */
+  color: white;
+  padding: 15px 30px; /* Larger padding for a more prominent button */
+  font-weight: 600;
+  border-radius: 50px; /* Pill-shaped button */
+  text-decoration: none;
+  display: inline-block; /* Essential for proper sizing and margin */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-size: 1.1rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2); /* Soft shadow */
+}
+
+.cta-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 12px 25px rgba(0, 123, 255, 0.35); /* Stronger shadow on hover */
+}
+
+/* Bottom Text Section Styling */
+.bottom-text {
+  margin-top: 60px; /* More space above this section */
+  text-align: center;
+}
+
+.bottom-text h3 {
+  font-size: 2.2rem; /* Larger heading */
+  color: #2c3e50;
+  line-height: 1.3;
+  font-weight: 400; /* Regular weight by default */
+}
+
+.bottom-text .bold {
+  font-weight: 700; /* Bold part of the text */
+  color: #007bff; /* Highlight with primary color */
+  font-size: 2.6rem; /* Even larger for impact */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
   .internship-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+    grid-template-columns: 1fr; /* Stack columns on medium screens */
     gap: 40px;
   }
-  .images-section img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  
+
   .images-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    gap: 20px;
+    order: 2; /* Put images below content on smaller screens */
   }
-  
-  .large-image img {
-    width: auto;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .small-images {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .small-images img {
-    width: 70%;
-    height: 70%;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-  
+
   .internship-content {
-    flex: 1;
-    max-width: 480px;
-    animation: fadeIn 1s ease-in-out;
+    order: 1; /* Put content above images on smaller screens */
+    padding: 30px;
+    text-align: center; /* Center text when stacked */
   }
-  
+
   .internship-content h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    line-height: 1.3;
+    font-size: 2.5rem;
   }
-  
-  .internship-content .highlight {
-    color: #212121;
-    font-weight: bold;
+
+  .internship-subtitle {
+    font-size: 0.85rem;
   }
-  
+
   .poster-image img {
-    width: 60%;
-    height: 60%;
-    border-radius: 12px;
-    margin: 20px 0;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    max-width: 80%; /* Adjust poster image size */
   }
-  
-  .internship-content p {
-    font-size: 16px;
-    color: #444;
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
-  
+
   .cta-button {
-    background-color: #00bfff;
-    color: white;
-    padding: 12px 24px;
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.3s ease;
-    
+    margin: 0 auto; /* Center button when text is centered */
+    display: block; /* Make button block level to center easily */
+    width: fit-content; /* Fit content for button width */
   }
-  
-  .cta-button:hover {
-    background-color: #009fcb;
-  }
-  
-  .bottom-text {
-    margin-top: 60px;
-    text-align: center;
-  }
-  
+
   .bottom-text h3 {
-    font-size: 24px;
-    color: #333;
+    font-size: 1.8rem;
   }
-  
+
   .bottom-text .bold {
-    font-weight: 700;
-    color: #000;
-    font-size: 28px;
+    font-size: 2.1rem;
   }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-  
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+
+@media (max-width: 768px) {
+  .internship-section {
+    padding: 60px 15px;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .internship-container {
-      flex-direction: column;
-    }
-  
-    .small-images {
-      flex-direction: column;
-    }
-  
-    .small-images img {
-      width: 100%;
-    }
-  
-    .internship-content {
-      max-width: 100%;
-    }
+
+  .internship-content h2 {
+    font-size: 2rem;
   }
-  
+
+  .internship-content p {
+    font-size: 1rem;
+  }
+
+  .small-images {
+    grid-template-columns: 1fr; /* Stack small images vertically on smaller screens */
+  }
+
+  .small-images img {
+    height: auto; /* Allow height to adjust */
+  }
+
+  .bottom-text h3 {
+    font-size: 1.5rem;
+  }
+
+  .bottom-text .bold {
+    font-size: 1.8rem;
+  }
+
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .internship-section {
+    padding: 40px 10px;
+  }
+
+  .internship-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .internship-content p {
+    font-size: 0.95rem;
+  }
+
+  .bottom-text h3 {
+    font-size: 1.3rem;
+  }
+
+  .bottom-text .bold {
+    font-size: 1.6rem;
+  }
+
+  .poster-image img {
+    max-width: 90%;
+  }
+}
