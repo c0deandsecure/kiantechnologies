@@ -53,18 +53,20 @@ const Courses = () => {
   };
 
   const cardVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0, scale: 0.95 },
     visible: {
       y: 0,
       opacity: 1,
+      scale: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: [0.25, 0.1, 0.25, 1]
       }
     },
     hover: {
-      y: -10,
-      boxShadow: "0 15px 30px rgba(0, 216, 216, 0.3)",
+      y: -15,
+      scale: 1.02,
+      boxShadow: "0 25px 50px -12px rgba(0, 216, 216, 0.25)",
       transition: {
         duration: 0.3
       }
@@ -74,99 +76,121 @@ const Courses = () => {
   const buttonVariants = {
     hover: {
       scale: 1.05,
-      boxShadow: "0 5px 15px rgba(0, 216, 216, 0.4)",
+      backgroundPosition: '100% 0',
       transition: {
-        duration: 0.3
+        duration: 0.3,
+        ease: "easeInOut"
       }
     },
-    tap: {
-      scale: 0.95
-    }
+    tap: { scale: 0.98 }
   };
 
   return (
     <section className="courses-section">
-      <div className="section-header text-center">
-        <motion.p 
-          className="subtitle"
+      <div className="section-header">
+        <motion.div 
+          className="header-content"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          LEARN NEW SKILLS
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <span>Popular</span> Courses
-        </motion.h2>
+          <p className="subtitle">EXPERT-LED PROGRAMS</p>
+          <h2>
+            Transform Your Career with Our 
+            <span> Popular Courses</span>
+          </h2>
+          <div className="header-decoration">
+            <div className="deco-line"></div>
+            <div className="deco-dot"></div>
+            <div className="deco-line"></div>
+          </div>
+        </motion.div>
       </div>
 
       <motion.div 
-        className="courses-container"
+        className="courses-grid"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
         {courses.map((course, index) => (
-          <motion.div 
+          <motion.article 
             className="course-card"
             key={index}
             variants={cardVariants}
             whileHover="hover"
           >
-            <div className="image-container">
-              <img 
-                src={course.image} 
-                alt={course.title} 
-                className="course-image" 
-                loading="lazy"
-              />
-              <div className="category-badge">{course.category}</div>
-            </div>
-            <div className="course-content">
-              <div className="course-meta">
-                <span className="course-students">{course.students}</span>
+            <div className="card-inner">
+              <div className="image-container">
+                <img 
+                  src={course.image} 
+                  alt={course.title}
+                  loading="lazy"
+                />
+                <div className="category-ribbon">
+                  <span>{course.category}</span>
+                </div>
+                <div className="hover-overlay"></div>
               </div>
-              <h3 className="course-title">{course.title}</h3>
-              <div className="course-rating">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className={i < course.rating ? 'star filled' : 'star'}>
-                    {i < course.rating ? '★' : '☆'}
+              
+              <div className="course-content">
+                <div className="meta-info">
+                  <span className="students">
+                    👥 {course.students}
                   </span>
-                ))}
-                <span className="rating-text">({course.rating}.0)</span>
+                  <div className="rating">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className={i < course.rating ? 'active' : ''}>
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <h3>{course.title}</h3>
+                
+                <div className="card-footer">
+                  <motion.button
+                    className="enroll-btn"
+                    variants={buttonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    Enroll Now →
+                  </motion.button>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </motion.div>
 
       <motion.div 
-        className="button-row"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
+        className="cta-section"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
       >
-        <motion.button 
-          className="course-btn"
-          variants={buttonVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          ABOUT US
-        </motion.button>
-        <motion.button 
-          className="course-btn"
-          variants={buttonVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          CONTACT US
-        </motion.button>
+        <p className="cta-text">Ready to start your learning journey?</p>
+        <div className="cta-buttons">
+          <motion.button
+            className="cta-btn primary"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            Browse All Courses
+          </motion.button>
+          <motion.button
+            className="cta-btn secondary"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            Speak to Advisor
+          </motion.button>
+        </div>
       </motion.div>
     </section>
   );
