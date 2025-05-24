@@ -18,6 +18,7 @@ import CoursesApp from './Courses/CoursesApp';
 import ContactUsApp from './Contact Us/ContactUsApp';
 import RegisterApp from './Register/RegisterApp';
 
+
 function HomePage() {
   return (
     <>
@@ -47,6 +48,7 @@ function App() {
         <Route path="/courses" element={<CoursesApp />} />
         <Route path="/contact" element={<ContactUsApp />} />
         <Route path="/register" element={<RegisterApp />} />
+        
       </Routes>
     </Router>
   );
