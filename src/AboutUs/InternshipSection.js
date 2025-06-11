@@ -1,6 +1,7 @@
 // InternshipSection.js
 import React from 'react';
 import './InternshipSection.css';
+import { Link } from 'react-router-dom'; // Import Link
 
 const InternshipSection = () => {
   return (
@@ -8,19 +9,19 @@ const InternshipSection = () => {
       <div className="internship-container">
         <div className="images-section">
           <div className="large-image">
-            <img 
-              src="https://kiantechnologies.in/assets/img/about/class1.png" 
-              alt="Main classroom" 
+            <img
+              src="https://kiantechnologies.in/assets/img/about/class1.png"
+              alt="Main classroom"
             />
           </div>
           <div className="small-images">
-            <img 
-              src="https://kiantechnologies.in/assets/img/about/class2.png" 
-              alt="Lab 1" 
+            <img
+              src="https://kiantechnologies.in/assets/img/about/class2.png"
+              alt="Lab 1"
             />
-            <img 
-              src="https://kiantechnologies.in/assets/img/about/class3.png" 
-              alt="Lab 2" 
+            <img
+              src="https://kiantechnologies.in/assets/img/about/class3.png"
+              alt="Lab 2"
             />
           </div>
         </div>
@@ -30,9 +31,9 @@ const InternshipSection = () => {
             <span className="highlight">Join Our Internship</span> <br /> Today!
           </h2>
           <div className="poster-image">
-            <img 
-              src="https://kiantechnologies.in/assets/img/teacher/internship1.jpg" 
-              alt="Internship Poster" 
+            <img
+              src="https://kiantechnologies.in/assets/img/teacher/internship1.jpg"
+              alt="Internship Poster"
             />
           </div>
           <p>
@@ -40,14 +41,13 @@ const InternshipSection = () => {
             challenges, and boost your career with expert guidance. Apply now!
           </p>
           <div className="button-wrapper">
-            <a 
-              href="https://www.kiantechnologies.in" 
-              target="_blank" 
-              rel="noreferrer" 
+            {/* Changed from <a> to Link */}
+            <Link
+              to="/register" // This will navigate to your /register route
               className="cta-button"
             >
               REGISTER NOW
-            </a>
+            </Link>
           </div>
         </div>
       </div>

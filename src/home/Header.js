@@ -4,7 +4,7 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Make sure Link is imported
 
 const Header = () => {
   const images = [
@@ -15,8 +15,8 @@ const Header = () => {
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.5, ease: "easeOut" }
     }
@@ -37,20 +37,20 @@ const Header = () => {
 
   return (
     <header className="App">
-      <motion.nav 
+      <motion.nav
         className="navbar"
         initial="hidden"
         animate="visible"
         variants={navVariants}
       >
-        <motion.div 
+        <motion.div
           className="logo"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           KT <span>KIAN TECHNOLOGIES</span>
         </motion.div>
-        
+
         <ul className="nav-links">
           {[
             { path: "/", name: "HOME" },
@@ -66,7 +66,7 @@ const Header = () => {
               initial="hidden"
               animate="visible"
               variants={textVariants}
-              whileHover={{ 
+              whileHover={{
                 color: "#00e0ff",
                 y: -2
               }}
@@ -76,7 +76,7 @@ const Header = () => {
             </motion.li>
           ))}
         </ul>
-        
+
         <div className="mobile-menu-btn">
           <div className="menu-line"></div>
           <div className="menu-line"></div>
@@ -84,11 +84,11 @@ const Header = () => {
         </div>
       </motion.nav>
 
-      <Slide 
-        duration={5000} 
-        transitionDuration={800} 
-        arrows={false} 
-        autoplay 
+      <Slide
+        duration={5000}
+        transitionDuration={800}
+        arrows={false}
+        autoplay
         infinite
         indicators
       >
@@ -127,17 +127,20 @@ const Header = () => {
                   <span className="highlight"> LPT</span>, and <span className="highlight">CISSP</span> programs.
                 </motion.p>
                 <motion.div variants={textVariants}>
-                  <motion.button
-                    className="cta-button"
-                    whileHover={{ 
-                      scale: 1.05,
-                      backgroundColor: "#00e0ff",
-                      color: "#000"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    CONTACT US <FaArrowRight />
-                  </motion.button>
+                  {/* Changed the button to a Link component */}
+                  <Link to="/register">
+                    <motion.button
+                      className="cta-button"
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "#00e0ff",
+                        color: "#000"
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      CONTACT US <FaArrowRight />
+                    </motion.button>
+                  </Link>
                 </motion.div>
               </motion.div>
             </div>

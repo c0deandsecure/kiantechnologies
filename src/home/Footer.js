@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Footer.css';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const galleryImages = [
   "https://kiantechnologies.in/assets/img/gallery/g-1.jpg",
@@ -38,11 +39,11 @@ const Footer = () => {
         <div className="footer-col" data-aos="fade-up" data-aos-delay="100">
           <h4>Useful Links</h4>
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Course</li>
-            <li>Contact Us</li>
-            <li>Registration</li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/courses">Courses</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
+            <li><Link to="/register">Registration</Link></li>
           </ul>
         </div>
 
@@ -50,11 +51,11 @@ const Footer = () => {
         <div className="footer-col" data-aos="fade-up" data-aos-delay="200">
           <h4>Account Info</h4>
           <ul>
-            <li>Teacher</li>
-            <li>Blog Details</li>
-            <li>Casestudy</li>
-            <li>Masterclass</li>
-            <li>FAQs</li>
+            <li><Link to="/teachers">Teacher</Link></li> {/* Example path, adjust as needed */}
+            <li><Link to="/blog-details">Blog Details</Link></li> {/* Example path, adjust as needed */}
+            <li><Link to="/casestudy">Casestudy</Link></li> {/* Example path, adjust as needed */}
+            <li><Link to="/masterclass">Masterclass</Link></li> {/* Example path, adjust as needed */}
+            <li><Link to="/faqs">FAQs</Link></li> {/* Example path, adjust as needed */}
           </ul>
         </div>
 
@@ -72,11 +73,12 @@ const Footer = () => {
       {/* Social + Newsletter */}
       <div className="footer-bottom" data-aos="fade-up">
         <div className="social-icons">
-          <i className="fab fa-whatsapp"></i>
-          <i className="fab fa-facebook"></i>
-          <i className="fab fa-instagram"></i>
-          <i className="fab fa-linkedin"></i>
-          <i className="fab fa-twitter"></i>
+          {/* Consider making these actual links if they lead somewhere specific */}
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
         </div>
         <div className="newsletter">
           <input type="email" placeholder="Email Address..." />
