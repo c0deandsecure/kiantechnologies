@@ -56,7 +56,7 @@ const InternshipCard = ({ title, description, imageSrc, index }) => {
           whileHover="hover"
           whileTap="tap"
         >
-          <a href="registration.php">APPLY NOW</a>
+          <a href="register">APPLY NOW</a>
         </motion.div>
       </div>
       <div className="card-description">

@@ -1,6 +1,6 @@
 import React from "react";
 import "./EthicalHackingCourse.css";
-
+import {link} from "react-router-dom";
 const EthicalHackingCourse = () => {
   return (
     <div className="ethical-hacking-container">

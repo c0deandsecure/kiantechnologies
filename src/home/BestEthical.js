@@ -93,7 +93,7 @@ const BestEthical = () => {
             
             <motion.div className="action-buttons" variants={itemVariants}>
               <motion.a 
-                href="contact.php" 
+                href="contact" 
                 className="action-btn primary"
                 variants={buttonVariants}
                 whileHover="hover"
