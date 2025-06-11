@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Registationpage.css';
 
 const Registrationpage = () => {
-  const [formData, setFormData] = useState({
+  // Initial form state
+  const initialState = {
     email: '',
     name: '',
     dob: '',
@@ -21,11 +22,16 @@ const Registrationpage = () => {
     whatsapp: '',
     referral: '',
     cv: null
-  });
+  };
 
+  // State hooks
+  const [formData, setFormData] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData(prev => ({
@@ -34,15 +40,50 @@ const Registrationpage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 3000);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Create FormData object for file upload
+      const formDataToSend = new FormData();
+      
+      // Append all form fields to FormData
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === 'cv' && value) {
+          formDataToSend.append('cv', value);
+        } else {
+          formDataToSend.append(key, value);
+        }
+      });
+
+      // Send POST request to backend
+      const response = await fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      // Handle response
+      const responseData = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(responseData.message || 'Registration failed. Please try again.');
+      }
+
+      // Handle success
+      setSubmitted(true);
+      setFormData(initialState);
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err) {
+      setError(err.message || 'An error occurred during registration. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  // Scroll to section
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
@@ -50,7 +91,28 @@ const Registrationpage = () => {
 
   return (
     <div className="app">
-      
+      <header className="header">
+        <nav className="nav">
+          <button 
+            className={`nav-btn ${activeSection === 'about' ? 'active' : ''}`}
+            onClick={() => scrollToSection('about')}
+          >
+            About
+          </button>
+          <button 
+            className={`nav-btn ${activeSection === 'benefits' ? 'active' : ''}`}
+            onClick={() => scrollToSection('benefits')}
+          >
+            Benefits
+          </button>
+          <button 
+            className={`nav-btn ${activeSection === 'register' ? 'active' : ''}`}
+            onClick={() => scrollToSection('register')}
+          >
+            Register
+          </button>
+        </nav>
+      </header>
 
       <main>
         <section id="about" className="section about-section">
@@ -130,6 +192,7 @@ const Registrationpage = () => {
             
             <form onSubmit={handleSubmit} className="registration-form">
               <div className="form-grid">
+                {/* Email */}
                 <div className="form-group">
                   <label htmlFor="email">E-mail ID *</label>
                   <input 
@@ -142,6 +205,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* Name */}
                 <div className="form-group">
                   <label htmlFor="name">Applicant Name (Block Letter) *</label>
                   <input 
@@ -154,6 +218,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* Date of Birth */}
                 <div className="form-group">
                   <label htmlFor="dob">Date of Birth *</label>
                   <input 
@@ -166,6 +231,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* State */}
                 <div className="form-group">
                   <label htmlFor="state">Select State *</label>
                   <select 
@@ -184,6 +250,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* College */}
                 <div className="form-group">
                   <label htmlFor="college">College Name *</label>
                   <input 
@@ -196,6 +263,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* Qualification */}
                 <div className="form-group">
                   <label htmlFor="qualification">Highest Academic Qualification *</label>
                   <select 
@@ -214,6 +282,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* Domain */}
                 <div className="form-group">
                   <label htmlFor="domain">Internship Domain *</label>
                   <select 
@@ -229,9 +298,15 @@ const Registrationpage = () => {
                     <option value="Network Security">Network Security</option>
                     <option value="Penetration Testing">Penetration Testing</option>
                     <option value="Digital Forensics">Digital Forensics</option>
+                    <option value="Web Development">Web development</option>
+                    <option value="Mobile Development">Mobile development</option>
+                    <option value="iOS Development">iOS development</option>
+                    <option value="Frontend Development">Frontend development</option>
+                    <option value="Backend Development">Backend development</option>
                   </select>
                 </div>
                 
+                {/* LinkedIn */}
                 <div className="form-group">
                   <label htmlFor="linkedIn">Followed LinkedIn Page *</label>
                   <select 
@@ -247,6 +322,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* Phone */}
                 <div className="form-group">
                   <label htmlFor="phone">Contact Number *</label>
                   <input 
@@ -259,6 +335,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* Guardian */}
                 <div className="form-group">
                   <label htmlFor="guardian">Father's Name/Guardian Name *</label>
                   <input 
@@ -271,6 +348,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* Gender */}
                 <div className="form-group">
                   <label htmlFor="gender">Gender *</label>
                   <select 
@@ -288,6 +366,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* Country */}
                 <div className="form-group">
                   <label htmlFor="country">Country *</label>
                   <input 
@@ -300,6 +379,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* University */}
                 <div className="form-group">
                   <label htmlFor="university">University Name *</label>
                   <input 
@@ -312,6 +392,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* Year */}
                 <div className="form-group">
                   <label htmlFor="year">Current Year of your Course? *</label>
                   <select 
@@ -330,6 +411,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* Source */}
                 <div className="form-group">
                   <label htmlFor="source">Where did you learn about Kian Technologies? *</label>
                   <select 
@@ -348,6 +430,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* WhatsApp */}
                 <div className="form-group">
                   <label htmlFor="whatsapp">Followed WhatsApp Page *</label>
                   <select 
@@ -363,6 +446,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
+                {/* Referral */}
                 <div className="form-group">
                   <label htmlFor="referral">Referral Code</label>
                   <input 
@@ -374,6 +458,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
+                {/* CV Upload */}
                 <div className="form-group file-upload">
                   <label htmlFor="cv">Upload CV:</label>
                   <div className="file-input-container">
@@ -398,9 +483,13 @@ const Registrationpage = () => {
                 <p>Note: Please don't spam (Apply multiple times for same domain), in this case your application will be considered invalid.</p>
               </div>
               
-              <button type="submit" className="submit-btn">
-                Submit
-                <i className="fas fa-paper-plane"></i>
+              <button 
+                type="submit" 
+                className="submit-btn"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Submitting...' : 'Submit'}
+                {!isLoading && <i className="fas fa-paper-plane"></i>}
               </button>
             </form>
             
@@ -410,11 +499,16 @@ const Registrationpage = () => {
                 <p>Your application has been submitted successfully!</p>
               </div>
             )}
+
+            {error && (
+              <div className="error-message">
+                <i className="fas fa-exclamation-circle"></i>
+                <p>{error}</p>
+              </div>
+            )}
           </div>
         </section>
       </main>
-      
-      
     </div>
   );
 };
