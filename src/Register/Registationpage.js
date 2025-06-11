@@ -65,7 +65,7 @@ const Registrationpage = () => {
       // Handle success
       setSubmitted(true);
       setFormData(initialState); // Clear form after successful submission
-      setTimeout(() => setSubmitted(false), 3000); // Hide success message after 3 seconds
+      setTimeout(() => setSubmitted(false), 10000); // Hide success message after 10 seconds
     } catch (err) {
       // Axios errors are typically in err.response.data
       setError(err.response?.data?.message || 'An error occurred during registration. Please try again.');
@@ -487,7 +487,7 @@ const Registrationpage = () => {
             {submitted && (
               <div className="success-message">
                 <i className="fas fa-check-circle"></i>
-                <p>Your application has been submitted successfully!</p>
+                <p>Your Registation has been submitted successfully!</p>
               </div>
             )}
 
