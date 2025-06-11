@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios
 import './Registationpage.css';
 
 const Registrationpage = () => {
@@ -47,37 +48,27 @@ const Registrationpage = () => {
     setError(null);
 
     try {
-      // Create FormData object for file upload
       const formDataToSend = new FormData();
-      
+
       // Append all form fields to FormData
       Object.entries(formData).forEach(([key, value]) => {
-        if (key === 'cv' && value) {
-          formDataToSend.append('cv', value);
-        } else {
-          formDataToSend.append(key, value);
-        }
+        formDataToSend.append(key, value);
       });
 
-      // Send POST request to backend
-      const response = await fetch('http://localhost:5000/api/register', {
-        method: 'POST',
-        body: formDataToSend,
+      // Send POST request to backend using Axios
+      const response = await axios.post('http://localhost:5000/api/register', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Important for file uploads
+        },
       });
-
-      // Handle response
-      const responseData = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(responseData.message || 'Registration failed. Please try again.');
-      }
 
       // Handle success
       setSubmitted(true);
-      setFormData(initialState);
-      setTimeout(() => setSubmitted(false), 3000);
+      setFormData(initialState); // Clear form after successful submission
+      setTimeout(() => setSubmitted(false), 3000); // Hide success message after 3 seconds
     } catch (err) {
-      setError(err.message || 'An error occurred during registration. Please try again.');
+      // Axios errors are typically in err.response.data
+      setError(err.response?.data?.message || 'An error occurred during registration. Please try again.');
     } finally {
       setIsLoading(false);
     }
