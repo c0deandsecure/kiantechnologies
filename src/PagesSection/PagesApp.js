@@ -2,11 +2,8 @@
 import React from 'react';
 import PagesHero from './pagesHero';
 import Teacher from './Teacher';
-import Blog from './Blog';
-import FacultyDetails from './FacultyDetails';
-import CaseStudies from './CaseStudies';
 
-import Contact from '../home/Contact';
+import Footer from "../home/Footer";
 import './Pages.css';
 
 const PagesApp = () => {
@@ -15,10 +12,8 @@ const PagesApp = () => {
       <PagesHero />
       {/* The following components can be rendered conditionally based on the route or user interaction */}
       <Teacher />
-      <Blog />
-      <FacultyDetails />
-      <CaseStudies />
-      <Contact />
+      <Footer />
+
     </div>
   );
 };
