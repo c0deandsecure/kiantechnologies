@@ -53,7 +53,7 @@ function App() {
         <Route path="/register" element={<RegisterApp />} />
         <Route path="/pages" element={<PagesApp />} />
         <Route path="/blog" element={<BlogApp />} />
-        <Route path='/admin' element={<AdminApp/>}/>
+        <Route path='/admin/*' element={<AdminApp/>}/>
 
         
       </Routes>
