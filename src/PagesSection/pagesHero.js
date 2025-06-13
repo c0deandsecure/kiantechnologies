@@ -28,7 +28,7 @@ const PagesHero = () => {
               <li><Link to="/about">ABOUT US</Link></li>
               <li><Link to="/courses">COURSES</Link></li>
               <li><Link to="/contact">CONTACT US</Link></li>
-              <li><Link to="/pages" className="active">PAGES</Link> {/* 'PAGES' is active here */}</li>
+              <li><Link to="/pages" className="active">Teacher</Link> {/* 'PAGES' is active here */}</li>
               <li><Link to="/register" className="register-btn">REGISTER</Link></li>
             </ul>
           </nav>
@@ -43,7 +43,7 @@ const PagesHero = () => {
             </h1>
             <div className="breadcrumb" data-aos="fade-up" data-aos-delay="300">
               <Link to="/">HOME</Link> {/* Using Link for breadcrumb navigation */}
-              <span className="current">PAGES</span>
+              <span className="current">TEACHER</span>
             </div>
           </div>
         </div>
