@@ -23,7 +23,7 @@ function ContactForm() {
       // Data to send to the backend.
       // 'course' and 'date' are omitted as they are not part of this specific form.
       // The backend controller will handle them gracefully by providing default values.
-      const response = await axios.post('http://localhost:5000/api/demo-register', {
+      const response = await axios.post('http://localhost:5000/api/demo', {
         name,
         email,
         phone,

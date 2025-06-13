@@ -56,7 +56,7 @@ const Registrationpage = () => {
       });
 
       // Send POST request to backend using Axios
-      const response = await axios.post('http://localhost:5000/api/register', formDataToSend, {
+      const response = await axios.post('http://localhost:5000/api/registration', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', // Important for file uploads
         },
@@ -465,6 +465,7 @@ const Registrationpage = () => {
                     </label>
                     <span className="file-status">
                       {formData.cv ? '' : 'No file chosen'}
+                      <p>Only PDF required</p>
                     </span>
                   </div>
                 </div>

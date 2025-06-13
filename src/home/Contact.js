@@ -39,7 +39,7 @@ const Contact = () => {
     try {
       // Send a POST request to your backend's demo-register endpoint
       // Ensure the URL matches your backend server's address and port
-      const response = await axios.post('http://localhost:5000/api/demo-register', formData);
+      const response = await axios.post('http://localhost:5000/api/demo', formData);
 
       // On successful submission
       setSubmissionMessage(response.data.message || 'Request submitted successfully!');
