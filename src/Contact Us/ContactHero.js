@@ -28,6 +28,7 @@ const ContactHero = () => {
               <li><a href="/contact" className="active">CONTACT US</a></li>
               <li><a href="/pages">TEACHER</a></li>
               <li><a href="/register" className="register-btn">REGISTER</a></li>
+              <li><a href="/blog" className="register-btn">BLOG</a></li>
             </ul>
           </nav>
         </div>

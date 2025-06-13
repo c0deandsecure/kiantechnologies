@@ -30,6 +30,7 @@ const PagesHero = () => {
               <li><Link to="/contact">CONTACT US</Link></li>
               <li><Link to="/pages" className="active">Teacher</Link> {/* 'PAGES' is active here */}</li>
               <li><Link to="/register" className="register-btn">REGISTER</Link></li>
+              <li><Link to="/blog" className="register-btn">BLOG</Link></li>
             </ul>
           </nav>
         </div>

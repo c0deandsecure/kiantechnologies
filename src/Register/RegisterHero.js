@@ -28,6 +28,7 @@ const RegisterHero = () => {
               <li><a href="/contact">CONTACT US</a></li>
               <li><a href="/pages">TEACHER</a></li>
               <li><a href="/register" className="active">REGISTER</a></li>
+              <li><a href="/blog" className="">BLOG</a></li>
             </ul>
           </nav>
         </div>
