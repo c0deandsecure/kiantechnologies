@@ -268,16 +268,7 @@ function BlogManagement() {
               >
                 <FaTrash /> Delete
               </button>
-              {post.isPublished && (
-                <a 
-                  href={`/blog/${post.slug}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="action-btn view-btn"
-                >
-                  <FaEye /> View
-                </a>
-              )}
+              
             </div>
           </div>
         ))}
