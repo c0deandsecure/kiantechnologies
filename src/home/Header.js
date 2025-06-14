@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; // No need for useState if no mobile menu toggle
 import "./Header.css";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
@@ -7,6 +7,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Make sure Link is imported
 
 const Header = () => {
+  // Removed isMobileMenuOpen state and related functions
+
   const images = [
     "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -51,6 +53,7 @@ const Header = () => {
           KT <span>KIAN TECHNOLOGIES</span>
         </motion.div>
 
+        {/* The nav-links will now always be visible and responsive via CSS */}
         <ul className="nav-links">
           {[
             { path: "/", name: "HOME" },
@@ -60,7 +63,6 @@ const Header = () => {
             { path: "/pages", name: "TEACHER" },
             { path: "/register", name: "REGISTER" },
             { path: "/blog", name: "BLOG" }
-
           ].map((item, index) => (
             <motion.li
               key={item.name}
@@ -74,16 +76,18 @@ const Header = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
+              {/* Removed onClick as there's no mobile menu to close anymore */}
               <Link to={item.path}>{item.name}</Link>
             </motion.li>
           ))}
         </ul>
 
-        <div className="mobile-menu-btn">
+        {/* REMOVED: mobile-menu-btn div as it's no longer needed */}
+        {/* <div className="mobile-menu-btn">
           <div className="menu-line"></div>
           <div className="menu-line"></div>
           <div className="menu-line"></div>
-        </div>
+        </div> */}
       </motion.nav>
 
       <Slide
@@ -129,7 +133,6 @@ const Header = () => {
                   <span className="highlight"> LPT</span>, and <span className="highlight">CISSP</span> programs.
                 </motion.p>
                 <motion.div variants={textVariants}>
-                  {/* Changed the button to a Link component */}
                   <Link to="/register">
                     <motion.button
                       className="cta-button"
