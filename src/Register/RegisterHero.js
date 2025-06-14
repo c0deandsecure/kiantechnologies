@@ -1,15 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "./RegisterHero.css";
 
 const RegisterHero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
   useEffect(() => {
     AOS.init({ 
       duration: 800,
       once: true,
       easing: 'ease-in-out-quad'
     });
+    
+    // Check screen size on load and resize
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
   return (

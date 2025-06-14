@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import './Registationpage.css';
 
-const Registrationpage = () => {
+const RegistrationPage = () => {
   // Initial form state
   const initialState = {
     email: '',
@@ -31,14 +31,34 @@ const Registrationpage = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const [cvPreview, setCvPreview] = useState(null);
 
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: files ? files[0] : value
-    }));
+    
+    if (name === 'cv' && files && files[0]) {
+      const file = files[0];
+      
+      // Create preview for PDF files
+      if (file.type === 'application/pdf') {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setCvPreview(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+      
+      setFormData(prev => ({
+        ...prev,
+        [name]: file
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   // Handle form submission
@@ -52,23 +72,38 @@ const Registrationpage = () => {
 
       // Append all form fields to FormData
       Object.entries(formData).forEach(([key, value]) => {
-        formDataToSend.append(key, value);
+        if (value !== null) {
+          formDataToSend.append(key, value);
+        }
       });
 
       // Send POST request to backend using Axios
       const response = await axios.post('http://localhost:5000/api/registration', formDataToSend, {
         headers: {
-          'Content-Type': 'multipart/form-data', // Important for file uploads
+          'Content-Type': 'multipart/form-data',
         },
       });
 
       // Handle success
       setSubmitted(true);
-      setFormData(initialState); // Clear form after successful submission
-      setTimeout(() => setSubmitted(false), 10000); // Hide success message after 10 seconds
+      setFormData(initialState);
+      setCvPreview(null);
+      setTimeout(() => setSubmitted(false), 10000);
     } catch (err) {
-      // Axios errors are typically in err.response.data
-      setError(err.response?.data?.message || 'An error occurred during registration. Please try again.');
+      // Enhanced error handling
+      if (err.response) {
+        if (err.response.status === 413) {
+          setError('File too large. Please upload a smaller file (max 5MB).');
+        } else if (err.response.status === 415) {
+          setError('Unsupported file type. Please upload a PDF file.');
+        } else {
+          setError(err.response.data?.message || `Server error: ${err.response.status}`);
+        }
+      } else if (err.request) {
+        setError('Network error. Please check your internet connection.');
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -81,8 +116,8 @@ const Registrationpage = () => {
   };
 
   return (
-    <div className="app">
-      <header className="header">
+    <div className="registration-app">
+      <header className="app-header">
         <nav className="nav">
           <button 
             className={`nav-btn ${activeSection === 'about' ? 'active' : ''}`}
@@ -91,10 +126,10 @@ const Registrationpage = () => {
             About
           </button>
           <button 
-            className={`nav-btn ${activeSection === 'benefits' ? 'active' : ''}`}
-            onClick={() => scrollToSection('benefits')}
+            className={`nav-btn ${activeSection === 'signers' ? 'active' : ''}`}
+            onClick={() => scrollToSection('signers')}
           >
-            Benefits
+            Signers
           </button>
           <button 
             className={`nav-btn ${activeSection === 'register' ? 'active' : ''}`}
@@ -124,56 +159,70 @@ const Registrationpage = () => {
                 Our mission is to empower aspiring cybersecurity experts with cutting-edge skills and profound knowledge, enabling them to safeguard digital environments against emerging threats. Whether you're looking to enhance your current expertise or start a new career in cybersecurity, Kian Technologies offers a pathway to success with personalized attention and a commitment to excellence. Join us to transform your potential into performance and become a key player in the global cybersecurity landscape.
               </p>
               
-              <h3 className="certificates-title">After completion of program the student will receive a:</h3>
+              <h3 className="certificates-title">After completion of program the student will receive:</h3>
               <ul className="certificates-list">
-                <li>Program Completion Certificate issued by IIT+MICROSOFT.</li>
-                <li>3 month Co-Branded Internship Certificate.</li>
-                <li>Letter of Recommendation will be given based on the students' performance.</li>
+                <li><i className="fas fa-certificate"></i> Program Completion Certificate issued by IIT+MICROSOFT</li>
+                <li><i className="fas fa-certificate"></i> 3 month Co-Branded Internship Certificate</li>
+                <li><i className="fas fa-certificate"></i> Letter of Recommendation based on performance</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <section id="benefits" className="section benefits-section">
+        <section id="signers" className="section signers-section">
           <div className="container">
-            <h2 className="section-title">Perks/Benefits:</h2>
-            <ul className="benefits-list">
-              <li className="benefit-item">
-                <i className="fas fa-microphone"></i>
-                <span>Mock Interview Preparation Tips.</span>
-              </li>
-              <li className="benefit-item">
-                <i className="fas fa-file-alt"></i>
-                <span>Resume Building Sessions.</span>
-              </li>
-              <li className="benefit-item">
-                <i className="fas fa-users"></i>
-                <span>Access to Growth Community.</span>
-              </li>
-              <li className="benefit-item">
-                <i className="fas fa-trophy"></i>
-                <span>Participate in Our Hackathons and Unlock Your Achievement.</span>
-              </li>
-            </ul>
+            <h2 className="section-title">Signers & Certificates</h2>
             
-            <div className="social-links">
-              <h3>Social Media Pages:</h3>
-              <div className="links-container">
-                <a href="https://kiantechnologies.in/index.php" className="social-link">
-                  <i className="fas fa-globe"></i> Our Website
-                </a>
-                <a href="https://wa.me/917587496155" className="social-link">
-                  <i className="fab fa-whatsapp"></i> Our WhatsApp
-                </a>
-                <a href="https://www.linkedin.com/company/kiantechnologies/" className="social-link">
-                  <i className="fab fa-linkedin"></i> Our LinkedIn Page
-                </a>
+            <div className="signers-content">
+              <p>
+                Our certificates are co-signed by industry experts and academic leaders to ensure 
+                they carry significant weight in the professional world.
+              </p>
+              
+              <div className="signers-grid">
+                <div className="signer-card">
+                  <div className="signer-avatar">
+                    <i className="fas fa-user-tie"></i>
+                  </div>
+                  <h3>Industry Expert</h3>
+                  <p>Cybersecurity Specialist with 15+ years experience</p>
+                </div>
+                
+                <div className="signer-card">
+                  <div className="signer-avatar">
+                    <i className="fas fa-graduation-cap"></i>
+                  </div>
+                  <h3>Academic Leader</h3>
+                  <p>Professor from IIT with specialization in Cybersecurity</p>
+                </div>
+                
+                <div className="signer-card">
+                  <div className="signer-avatar">
+                    <i className="fas fa-building"></i>
+                  </div>
+                  <h3>Microsoft Representative</h3>
+                  <p>Technology Partner endorsing the certification</p>
+                </div>
+              </div>
+              
+              <div className="certificate-showcase">
+                <div className="certificate-card">
+                  <div className="certificate-icon">
+                    <i className="fas fa-award"></i>
+                  </div>
+                  <h3>Program Completion Certificate</h3>
+                  <p>Issued by IIT and Microsoft</p>
+                </div>
+                
+                <div className="certificate-card">
+                  <div className="certificate-icon">
+                    <i className="fas fa-medal"></i>
+                  </div>
+                  <h3>Internship Certificate</h3>
+                  <p>3 month co-branded certificate</p>
+                </div>
               </div>
             </div>
-            
-            <p className="note">
-              Please fill all the required fields carefully, information provided will be used in offer letter and Completion Certificate.
-            </p>
           </div>
         </section>
 
@@ -183,7 +232,7 @@ const Registrationpage = () => {
             
             <form onSubmit={handleSubmit} className="registration-form">
               <div className="form-grid">
-                {/* Email */}
+                {/* Row 1 */}
                 <div className="form-group">
                   <label htmlFor="email">E-mail ID *</label>
                   <input 
@@ -196,9 +245,8 @@ const Registrationpage = () => {
                   />
                 </div>
                 
-                {/* Name */}
                 <div className="form-group">
-                  <label htmlFor="name">Applicant Name (Block Letter) *</label>
+                  <label htmlFor="name">Applicant Name *</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -206,10 +254,11 @@ const Registrationpage = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required 
+                    placeholder="In block letters"
                   />
                 </div>
                 
-                {/* Date of Birth */}
+                {/* Row 2 */}
                 <div className="form-group">
                   <label htmlFor="dob">Date of Birth *</label>
                   <input 
@@ -222,7 +271,6 @@ const Registrationpage = () => {
                   />
                 </div>
                 
-                {/* State */}
                 <div className="form-group">
                   <label htmlFor="state">Select State *</label>
                   <select 
@@ -232,7 +280,7 @@ const Registrationpage = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select State --</option>
                     <option value="Chhattisgarh">Chhattisgarh</option>
                     <option value="Madhya Pradesh">Madhya Pradesh</option>
                     <option value="Maharashtra">Maharashtra</option>
@@ -241,7 +289,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* College */}
+                {/* Row 3 */}
                 <div className="form-group">
                   <label htmlFor="college">College Name *</label>
                   <input 
@@ -254,9 +302,8 @@ const Registrationpage = () => {
                   />
                 </div>
                 
-                {/* Qualification */}
                 <div className="form-group">
-                  <label htmlFor="qualification">Highest Academic Qualification *</label>
+                  <label htmlFor="qualification">Highest Qualification *</label>
                   <select 
                     id="qualification" 
                     name="qualification" 
@@ -264,7 +311,7 @@ const Registrationpage = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select Qualification --</option>
                     <option value="High School">High School</option>
                     <option value="Diploma">Diploma</option>
                     <option value="Bachelor's Degree">Bachelor's Degree</option>
@@ -273,7 +320,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* Domain */}
+                {/* Row 4 */}
                 <div className="form-group">
                   <label htmlFor="domain">Internship Domain *</label>
                   <select 
@@ -283,7 +330,7 @@ const Registrationpage = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select Domain --</option>
                     <option value="Cybersecurity">Cybersecurity</option>
                     <option value="Ethical Hacking">Ethical Hacking</option>
                     <option value="Network Security">Network Security</option>
@@ -297,9 +344,8 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* LinkedIn */}
                 <div className="form-group">
-                  <label htmlFor="linkedIn">Followed LinkedIn Page *</label>
+                  <label htmlFor="linkedIn">Followed LinkedIn Page? *</label>
                   <select 
                     id="linkedIn" 
                     name="linkedIn" 
@@ -313,7 +359,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* Phone */}
+                {/* Row 5 */}
                 <div className="form-group">
                   <label htmlFor="phone">Contact Number *</label>
                   <input 
@@ -323,12 +369,12 @@ const Registrationpage = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     required 
+                    placeholder="With country code"
                   />
                 </div>
                 
-                {/* Guardian */}
                 <div className="form-group">
-                  <label htmlFor="guardian">Father's Name/Guardian Name *</label>
+                  <label htmlFor="guardian">Father/Guardian Name *</label>
                   <input 
                     type="text" 
                     id="guardian" 
@@ -339,7 +385,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
-                {/* Gender */}
+                {/* Row 6 */}
                 <div className="form-group">
                   <label htmlFor="gender">Gender *</label>
                   <select 
@@ -349,7 +395,7 @@ const Registrationpage = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select Gender --</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
@@ -357,7 +403,6 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* Country */}
                 <div className="form-group">
                   <label htmlFor="country">Country *</label>
                   <input 
@@ -370,7 +415,7 @@ const Registrationpage = () => {
                   />
                 </div>
                 
-                {/* University */}
+                {/* Row 7 */}
                 <div className="form-group">
                   <label htmlFor="university">University Name *</label>
                   <input 
@@ -383,9 +428,8 @@ const Registrationpage = () => {
                   />
                 </div>
                 
-                {/* Year */}
                 <div className="form-group">
-                  <label htmlFor="year">Current Year of your Course? *</label>
+                  <label htmlFor="year">Current Course Year *</label>
                   <select 
                     id="year" 
                     name="year" 
@@ -393,7 +437,7 @@ const Registrationpage = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select Year --</option>
                     <option value="1st Year">1st Year</option>
                     <option value="2nd Year">2nd Year</option>
                     <option value="3rd Year">3rd Year</option>
@@ -402,9 +446,9 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* Source */}
+                {/* Row 8 */}
                 <div className="form-group">
-                  <label htmlFor="source">Where did you learn about Kian Technologies? *</label>
+                  <label htmlFor="source">How did you hear about us? *</label>
                   <select 
                     id="source" 
                     name="source" 
@@ -412,7 +456,7 @@ const Registrationpage = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select Source --</option>
                     <option value="Social Media">Social Media</option>
                     <option value="Friend/Family">Friend/Family</option>
                     <option value="College">College</option>
@@ -421,9 +465,8 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* WhatsApp */}
                 <div className="form-group">
-                  <label htmlFor="whatsapp">Followed WhatsApp Page *</label>
+                  <label htmlFor="whatsapp">Followed WhatsApp Page? *</label>
                   <select 
                     id="whatsapp" 
                     name="whatsapp" 
@@ -437,7 +480,7 @@ const Registrationpage = () => {
                   </select>
                 </div>
                 
-                {/* Referral */}
+                {/* Row 9 */}
                 <div className="form-group">
                   <label htmlFor="referral">Referral Code</label>
                   <input 
@@ -446,12 +489,12 @@ const Registrationpage = () => {
                     name="referral" 
                     value={formData.referral}
                     onChange={handleChange}
+                    placeholder="If any"
                   />
                 </div>
                 
-                {/* CV Upload */}
                 <div className="form-group file-upload">
-                  <label htmlFor="cv">Upload CV:</label>
+                  <label htmlFor="cv">Upload CV *</label>
                   <div className="file-input-container">
                     <input 
                       type="file" 
@@ -459,20 +502,43 @@ const Registrationpage = () => {
                       name="cv" 
                       onChange={handleChange}
                       className="file-input"
+                      accept=".pdf,application/pdf"
+                      required
                     />
                     <label htmlFor="cv" className="file-label">
                       {formData.cv ? formData.cv.name : 'Choose File'}
                     </label>
                     <span className="file-status">
                       {formData.cv ? '' : 'No file chosen'}
-                      <p>Only PDF required</p>
+                      <p>Only PDF required (max 5MB)</p>
                     </span>
                   </div>
+                  
+                  {cvPreview && (
+                    <div className="cv-preview">
+                      <p>PDF Preview:</p>
+                      <div className="preview-container">
+                        <iframe 
+                          src={cvPreview} 
+                          title="CV Preview"
+                          className="pdf-preview"
+                        />
+                        <a 
+                          href={cvPreview} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="view-full"
+                        >
+                          View Full PDF
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               
               <div className="form-note">
-                <p>Note: Please don't spam (Apply multiple times for same domain), in this case your application will be considered invalid.</p>
+                <p><i className="fas fa-exclamation-circle"></i> Note: Please don't apply multiple times for the same domain as your application will be considered invalid.</p>
               </div>
               
               <button 
@@ -480,22 +546,37 @@ const Registrationpage = () => {
                 className="submit-btn"
                 disabled={isLoading}
               >
-                {isLoading ? 'Submitting...' : 'Submit'}
-                {!isLoading && <i className="fas fa-paper-plane"></i>}
+                {isLoading ? (
+                  <>
+                    <span className="spinner"></span> Submitting...
+                  </>
+                ) : (
+                  <>
+                    Submit Registration <i className="fas fa-paper-plane"></i>
+                  </>
+                )}
               </button>
             </form>
             
             {submitted && (
               <div className="success-message">
                 <i className="fas fa-check-circle"></i>
-                <p>Your Registation has been submitted successfully!</p>
+                <h3>Registration Successful!</h3>
+                <p>Your registration has been submitted successfully. You will receive a confirmation email shortly.</p>
               </div>
             )}
 
             {error && (
               <div className="error-message">
                 <i className="fas fa-exclamation-circle"></i>
+                <h3>Registration Error</h3>
                 <p>{error}</p>
+                <button 
+                  className="retry-btn"
+                  onClick={() => setError(null)}
+                >
+                  Try Again
+                </button>
               </div>
             )}
           </div>
@@ -505,4 +586,4 @@ const Registrationpage = () => {
   );
 };
 
-export default Registrationpage;
+export default RegistrationPage;

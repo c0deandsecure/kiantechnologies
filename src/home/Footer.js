@@ -51,11 +51,8 @@ const Footer = () => {
         <div className="footer-col" data-aos="fade-up" data-aos-delay="200">
           <h4>Account Info</h4>
           <ul>
-            <li><Link to="/teachers">Teacher</Link></li> {/* Example path, adjust as needed */}
-            <li><Link to="/blog-details">Blog Details</Link></li> {/* Example path, adjust as needed */}
-            <li><Link to="/casestudy">Casestudy</Link></li> {/* Example path, adjust as needed */}
-            <li><Link to="/masterclass">Masterclass</Link></li> {/* Example path, adjust as needed */}
-            <li><Link to="/faqs">FAQs</Link></li> {/* Example path, adjust as needed */}
+            <li><Link to="/pages">Teacher</Link></li> {/* Example path, adjust as needed */}
+            <li><Link to="/blog">Blog Details</Link></li> {/* Example path, adjust as needed */}
           </ul>
         </div>
 
