@@ -9,48 +9,52 @@ const BlogCard = ({ post }) => {
     return new Date(dateString).toLocaleDateString('en-GB', options);
   };
   
-  // Use post.image instead of post.imageUrl
   const imageUrl = post.image;
   const excerpt = post.excerpt || (post.content ? 
-    post.content.substring(0, 100) + '...' : 
+    post.content.substring(0, 150) + '...' : 
     'No excerpt available.'
   );
   
   const postDate = post.createdAt ? formatDate(post.createdAt) : 'No Date';
 
+  const [day, monthYear] = postDate.split(' ', 2); // Split once to get day and rest of string
+
   return (
     <div className="blog-card">
-      <div className="blog-header">
-        <div className="blog-brand">BYBIT</div>
-        <div className="blog-date">{postDate}</div>
-      </div>
-      
-      <div className="divider"></div>
-      
-      {/* Image should be at the top of the card */}
       {imageUrl && (
-        <div className="blog-card-image-wrapper">
+        <div className="blog-card-image-container">
           <img 
             src={imageUrl} 
             alt={post.title} 
             className="blog-card-image" 
             onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.parentNode.style.display = 'none';
+              e.target.src = 'https://via.placeholder.com/400x200?text=Image+Not+Found'; 
+              e.target.onerror = null; 
+              e.target.style.display = 'block'; 
             }}
           />
+          <div className="blog-card-overlay">
+            <div className="blog-overlay-date">
+              <span className="overlay-day">{day}</span>
+              <span className="overlay-month-year">{monthYear}</span>
+            </div>
+          </div>
         </div>
       )}
       
-      <h3 className="blog-card-title">{post.title}</h3>
-      <p className="blog-card-excerpt">{excerpt}</p>
-      
-      <Link 
-        to={`http://localhost:5000/blog/${post.slug}`} 
-        className="read-more-button"
-      >
-        Read More <span className="smiley">😊</span>
-      </Link>
+      <div className="blog-card-content">
+        <h3 className="blog-card-title">{post.title}</h3>
+        <p className="blog-card-excerpt">{excerpt}</p>
+        
+        {/* --- CRITICAL CORRECTION: Change the 'to' prop here --- */}
+        {/* It MUST be a relative path, not a full URL to the backend API. */}
+        <Link 
+          to={`/blog/post/${post.slug}`} // CORRECTED: Removed "http://localhost:5000/api/blog"
+          className="read-more-button"
+        >
+          Read More &gt;
+        </Link>
+      </div>
     </div>
   );
 };

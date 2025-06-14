@@ -11,7 +11,6 @@ const AboutUsApp = () => {
       
       <BlogHero/>
       <BlogPages/>
-
       <Footer />
     </>
   );

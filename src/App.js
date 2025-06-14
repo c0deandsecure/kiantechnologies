@@ -19,6 +19,7 @@ import ContactUsApp from './Contact Us/ContactUsApp';
 import RegisterApp from './Register/RegisterApp';
 import PagesApp from './PagesSection/PagesApp';
 import BlogApp from './blog/blogApp'
+import BlogPost from './blog/BlogPost';
 import AdminApp from './Admin/AdminApp';
 
 
@@ -53,7 +54,9 @@ function App() {
         <Route path="/register" element={<RegisterApp />} />
         <Route path="/pages" element={<PagesApp />} />
         <Route path="/blog" element={<BlogApp />} />
+        <Route path="blog/post/:slug" element={<BlogPost />} />
         <Route path='/admin/*' element={<AdminApp/>}/>
+
 
         
       </Routes>
