@@ -33,7 +33,7 @@ const AboutWithNews = () => {
           </div>
         </div>
 
-        <a className="view-all" href="#">View All News ➤</a>
+        <a className="view-all" href="/blog">View All News ➤</a>
       </aside>
     </section>
   );
